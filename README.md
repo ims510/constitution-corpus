@@ -31,7 +31,4 @@ Depuis la publication de ce corpus dans l'article cité avant, 22 autres article
 - L'efficacité déraisonnable de l'apprentissage automatique dans l'identification des dialectes moldave et roumain (https://arxiv.org/pdf/2007.15700v3.pdf)
 - Affiner le BERT avec le bruit au niveau des caractères pour un transfert zéro vers les dialectes et les langues étroitement liées (https://arxiv.org/pdf/2303.17683v1.pdf)
 
-# Corpus à constituer
-
-Je vais donc constituer un corpus similaire (sur plusieurs langues peut-être), pour une tache de classification en fonction de langue / dialect (par exemple texte en anglais écrit un irlandais versus un anglais versus un écossais). Je vais chercher des articles des actualités dans les langues et j'enleverai les entités nommés. 
 
