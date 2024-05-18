@@ -1,0 +1,161 @@
+---
+task_categories:
+- text classification
+- topic classification
+language:
+- romanian
+pretty_name: Romanian and Moldovan News Dataset
+size_categories:
+- n<1K
+---
+
+# Dataset Card for Dataset Name
+
+The Romanian and Moldovan News Dataset contains Moldovan and Romanian samples of news articles. 
+
+## Dataset Details
+
+### Dataset Description
+
+The articles belong to one of the following six topics: (0) culture, (1) world, (2) politics, (3) economy, (4) social, (5) technology. 
+The corpus features a total of 540 samples, of which 136 are original texts, and the rest are obtained through corpus augmentation techniques.
+The articles are labelled with one of the fore mentioned six categories. 
+There is also a train/dev/test split with 378/81/81 samples in each subset respectively.
+
+- **Curated by:** Ioana-Madalina SILAI 
+- **Language(s) (NLP):** Romanian
+- **License:** N/A
+
+### Dataset Sources [optional]
+
+The text was collected from two websites: https://www.mediafax.ro and https://noi.md/md/. 
+
+- **Repository:** https://github.com/ims510/constitution-corpus
+- **Paper:** N/A
+
+## Uses
+
+This dataset can be used for classification tasks, such as binary classification by dialect, intra-dialect multi-class categorization by topic, cross-dialect multi-class categorization by topic, etc.
+
+### Direct Use
+
+Due to the augmentation techniques used to create the dataset, the samples contain grammatical mistakes. In addition to this, only two websites were used to collect the data, which may lead to a biased dataset.
+
+Also, as the corpus is small, it is recommended to use it for educational purposes or as a starting point for further research.
+
+Theoretically, this dataset can be used classification tasks. Since both the country and the category labels are provided for each sample, the following tasks could be performed:
+• Binary classification by dialect – the task is to discriminate between the Moldavian and the Romanian dialects.
+• Moldavian (MD) intra-dialect multi-class categorization by topic – the task is to classify the samples written in the Moldavian dialect into six topics.
+• Romanian (RO) intra-dialect multi-class categorization by topic – the task is to classify the samples written in the Romanian dialect into six topics.
+• MD→RO cross-dialect multi-class categorization by topic – the task is to classify the samples written in the Romanian dialect into six topics, using a model trained on samples written in the Moldavian dialect.
+• RO→MD cross-dialect multi-class categorization by topic – the task is to classify the samples written in the Moldavian dialect into six topics, using a model trained on samples written in the Romanian dialect
+
+### Out-of-Scope Use
+
+Because of the augmentation techniques used, which led to grammatical mistakes in the corpus, this dataset would not be suitable to train a model for text generation tasks.
+
+## Dataset Structure
+
+There are the following columns in the data:
+id: integers, the unique indentifier of an article
+category_label: integer in the range [0, 5]; the category assigned to an article.
+sample: a string, news report to be classified / used in classification.
+country: a string, the country of origin of the article.
+
+Example:
+
+```
+id: 22329096
+category: 5
+text: "Începând de trecut, un nou tip de a devenit vedetă schimbă modul în care $ NE $ se desfăşoară pe linia frontului. Se numesc $ NE $ First Person View şi au devenit un coşmar militarii de pe ambele părţi ale câmpului de luptă. Dacă o rachetă de croazieră sau balistică costă câteva milioane de dolari, iar group o dronă kamikaze poate depăşi o sută de mii de dolari, dronele $ NE $, funcţie de mărime, sunt de ordinul sutelor şi miilor de doalri. Pot fi folosite în număr mare, de exemplu $ NE $ şi - a propus să doteze armata cu un milion astfel de $ NE $ în anul 2024. O dronă $ NE $ poate fi folosită pentru mai multe misiuni: culegerea informaţiilor din câmpul tactic, lansarea de muniţii sau transformarea ei într - o dronă sinucigaşă. regulă, militarii operatori de $ NE $ vânează blindatele şi sistemele de armament inamice, dar sunt destule clipuri pe reţelele de socializare în care ţinta este singur $ NE $ inamic. Astfel, dronele $ NE $ par să ia locul inclusiv al $ NE $ de asalt şi cresc considerabil distanţa delaware angajare a focului. Armatele moderne nu au dezvoltat încă strategii pentru folosirea dronelor $ NE $, dar toţi $ NE $ consideră că acestea vor avea un loc important în viitoarele conflicte. Mai nou, armata $ NE $ a constituit unitate specială unde militarii testează dronele $ NE $ pentru a putea vedea modul de folosire şi îmbunătăţire a procedurilor de luptă cu aceste $ NE $ ieftine. Dezvoltarea domeniului dronelor, duce automat la creşterea rolului războiului electronic şi au apărut deja sisteme portabile de bruiere a dronelor, pe lângă cele dispuse pe $ $. În viitor, grupa de infanterie ar putea un operator de $ NE $ şi un specialst în război electronic, pe lângă puşcaşi, $ NE $, $ NE $ la puşca mitralieră şi cel la aruncătorul first state $ nebraska $ antitanc."
+country: Romania
+```
+
+## Dataset Creation
+
+### Curation Rationale
+
+There is very little data available for the Romanian and Moldovan dialects of the Romanian language, and very few corpora of Romanian texts in general. 
+This dataset was created to provide a starting point for further research in this area.
+
+
+### Source Data
+
+The articles were collected from the homepage of two websites: https://www.mediafax.ro (the website for the main Romanian news agency) and https://noi.md/md/ (a respectable Moldovan news website).
+
+#### Data Collection and Processing
+
+The data was collected using web scraping techniques, mainly the lxml.html library. 
+The texts were extracted, along with the category and the id chosen by the website managers. 
+In order to align the articles, the categories were unified into six categories: (0) culture, (1) world, (2) politics, (3) economy, (4) social, (5) technology.
+The named entities were also removed from the texts using spacy.
+Finally, in order to clean the corpus outliers were removed, and in order to balance the classes and to increase the number of samples (from 145 to 540), the data was augmented using the nlpaug.augmenter.word library, mainly the synonym and random word augmenter functions.
+
+Corpus statistics before augmenting are as follows:
+
+- Distribution of the corpus by country of origin:
+  - Moldova: 100 articles (69%)
+  - Romania: 45 articles (31%)
+
+- Distribution of the corpus by category and country of origin:
+  - Moldova:
+    - culture: 2 articles 
+    - world: 27 articles 
+    - politics: 17 articles 
+    - economy: 5 articles 
+    - social: 48 articles 
+    - technology: 1 article 
+  - Romania:
+    - culture: 3 articles 
+    - world: 23 articles 
+    - politics: 7 articles 
+    - economy: 3 articles 
+    - social: 8 articles 
+    - technology: 1 articles 
+
+Visual representation of these numbers, as well as the number of tokens per category for each of the countries of origin and zipf's law for this corpus can be found in the cours4_statistiques.ipynb notebook.
+
+Corpus statistics after augmenting are as follows:
+
+- Distribution of the corpus by country of origin:
+  - Moldova: 270 articles (50%)
+  - Romania: 270 articles (50%)
+
+- Distribution of the corpus by category and country of origin:
+ - Moldova:
+    - culture: 45 articles 
+    - world: 45 articles 
+    - politics: 45 articles 
+    - economy: 45 articles 
+    - social: 45 articles 
+    - technology: 45 articles 
+  - Romania:
+    - culture: 45 articles 
+    - world: 45 articles 
+    - politics: 45 articles 
+    - economy: 45 articles 
+    - social: 45 articles 
+    - technology: 45 articles
+
+Visual representation of these numbers, as well as the number of tokens per category for each of the countries of origin can be found in the cours5_selectionner_caract.ipynb notebook.
+
+#### Who are the source data producers?
+
+The https://www.mediafax.ro and https://noi.md/md/ editors.
+
+### Annotations [optional]
+
+The country of origin was added as a column in order to allow for a single data structure to contain all the articles, witout losing the country information. 
+
+## Bias, Risks, and Limitations
+
+As only one website was used to collect the data, the dataset may be biased, so any trend emerging from the data might not be representative of the entire language.
+
+### Recommendations
+
+This corpus should only be used for educational purposes, as it is small, biased and contains grammatical mistakes.
+
+
+## Dataset Card Authors [optional]
+
+Ioana-Madalina SILAI
