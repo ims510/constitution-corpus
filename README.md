@@ -19,8 +19,8 @@ Les échantillons sont prétraités afin d'éliminer les entités nommées. Ceci
 
 La tâche principale de ce corpus est la classification de texte, avec la sous-tâche de classification par thème. Dans l'article écrit lors de la publication du corpus (https://arxiv.org/pdf/1901.06543v2.pdf), les auteurs ont utilisé ce corpus pour les tâches suivantes: 
 
--  discrimination binaire des échantillons de texte en textes moldaves ou roumains
--  catégorisation multi-classes, intra-dialect
+- discrimination binaire des échantillons de texte en textes moldaves ou roumains
+- catégorisation multi-classes, intra-dialect
 - catégorisation multi-classes, à travers dialects
 
 
